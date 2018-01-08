@@ -1,11 +1,15 @@
 import {validateAddress} from 'util/api_calls/ProjectApiCalls'
 
-const validateInput = (payload, dispatch) => {
+const validateInput = (parameters, dispatch) => {
+
+    let apiPars = '';
+    apiPars += `q=${parameters.suburb}`
+    apiPars += parameters.state ? `&state=${parameters.state}` : '';
 
     validateAddress(
-        payload,
-        result => {
-            dispatch(postedAddress(result))
+        apiPars,
+        payload => {
+            dispatch(postedAddress(payload))
         },
         error => {
             dispatch(postError(error))
@@ -13,31 +17,30 @@ const validateInput = (payload, dispatch) => {
     );
 
     return {
-        type: "POST_VALIDATE_ADDRESS",
-        payload
+        type: 'POST_VALIDATE_ADDRESS_START',
+        payload: parameters
     }
 }
 
 const postedAddress = payload => {
 
     return {
-        type: "POST_VALIDATE_ADDRESS_STARTED",
-        payload
+        type: 'POST_VALIDATE_ADDRESS_FINISHED',
+        payload: payload
     }
 }
 
 const postError = error => {
 
+    console.error("error",error);
     let payload = {}
     if (error.constructor.name === 'Error') {
         // In case 500 is received I don't want to show server's raw error.
-        let errorMessage = 'There was an error, please contact support.';
         payload = {
-            error: true,
-            message: errorMessage
+            errorMessages: ['There was an error, please contact support.']
         };
     } else {
-        payload = {...error, error: true};
+        payload = {...error};
     }
     return {
         type: "POST_VALIDATE_ADDRESS_ERROR",
@@ -45,4 +48,4 @@ const postError = error => {
     }
 }
 
-export { validateInput }
+export {validateInput}

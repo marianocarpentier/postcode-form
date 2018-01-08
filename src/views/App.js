@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import logo from '../assets/images/logo.svg';
 import {FormGroup, FormControl, ControlLabel, HelpBlock, Button} from 'react-bootstrap';
-import { validateInput } from 'actions/ProjectActions';
+import {validateInput} from 'actions/ProjectActions';
 import {connect} from 'react-redux';
 import './App.css';
 
@@ -20,7 +20,7 @@ class App extends Component {
             stateErr: false,
             postcodeMsg: '',
             suburbMsg: '',
-            stateMsg: '',
+            stateMsg: ''
         }
 
         this.handleValidate = this.handleValidate.bind(this);
@@ -33,37 +33,50 @@ class App extends Component {
     }
 
     getValidationPostcode() {
-        return this.state.postcodeErr ? 'error' : null;
+
+        const {errorFields, successMessage} = this.props;
+        return this.state.postcodeErr || errorFields.postcode ? 'error' : successMessage ? 'success' : null;
     }
 
     getValidationSuburb() {
-        return this.state.suburbErr ? 'error' : null;
+        const {errorFields, successMessage} = this.props;
+        return this.state.suburbErr || errorFields.suburb ? 'error' : successMessage ? 'success' : null;
     }
 
     getValidationState() {
-        return this.state.stateErr ? 'error' : null;
+        const {errorFields, successMessage} = this.props;
+        return this.state.stateErr || errorFields.state ? 'error' : successMessage ? 'success' : null;
     }
 
     handleChangePostcode(e) {
-        this.setState({ postcode: e.target.value });
-    }
-    handleChangeSuburb(e) {
-        this.setState({ suburb: e.target.value });
-    }
-    handleChangeState(e) {
-        this.setState({ state: e.target.value });
+        this.setState({postcode: e.target.value});
     }
 
+    handleChangeSuburb(e) {
+        this.setState({suburb: e.target.value});
+    }
+
+    handleChangeState(e) {
+        this.setState({state: e.target.value});
+    }
+
+    /**
+     * Validations for the data to post to the API.
+     * The front end should sanitize as much as possible before hitting the backend.
+     */
     handleValidate(e) {
 
         const {postcode, suburb, state} = this.state;
 
+        let error = false;
+
         let postcodeState = {};
-        if (postcode.length < 3) {
+        if (postcode.length <= 0 || isNaN(postcode)) {
             postcodeState = {
-                postcodeMsg: 'Eg: 2065',
+                postcodeMsg: 'The postcode can not be empty and should be numeric. Eg: 2065',
                 postcodeErr: true
             };
+            error |= true;
         } else {
             postcodeState = {
                 postcodeMsg: '',
@@ -72,11 +85,12 @@ class App extends Component {
         }
 
         let suburbState = {};
-        if (suburb.length < 3) {
+        if (suburb.length <= 0) {
             suburbState = {
-                suburbMsg: 'Eg: Crows Nest',
+                suburbMsg: 'The suburb can not be empty. Eg: Crows Nest',
                 suburbErr: true
             };
+            error |= true;
         } else {
             suburbState = {
                 suburbMsg: '',
@@ -85,11 +99,12 @@ class App extends Component {
         }
 
         let stateState = {};
-        if (state.length < 3) {
+        if (state.length <= 0) {
             stateState = {
-                stateMsg: 'Eg: NSW',
+                stateMsg: 'The state can not be empty. Eg: NSW',
                 stateErr: true
             };
+            error |= true;
         } else {
             stateState = {
                 stateMsg: '',
@@ -97,7 +112,12 @@ class App extends Component {
             };
         }
 
-        this.props.dispatch(validateInput({}, this.props.dispatch));
+        // If no error in the input, then dispatch the action to check on the API.
+        if (!error) {
+
+            this.props.dispatch(validateInput({suburb, state, postcode}, this.props.dispatch));
+
+        }
 
         this.setState({
             ...postcodeState,
@@ -107,72 +127,99 @@ class App extends Component {
     }
 
     render() {
+
+        const {processing, errorMessages, successMessage} = this.props;
+
         return (
-            <div className="app">
-                <header className="header">
-                    <img src={logo} className="logo" alt="logo"/>
-                </header>
-                <div className="form-container">
-                    <h1>Address validator</h1>
-                    <p>Please complete the form and click the button to validate the input.</p>
-                    <form className="form">
-                        <FormGroup
-                            controlId="postcode"
-                            validationState={this.getValidationPostcode()}>
-                            <ControlLabel>Postcode</ControlLabel>
-                            <FormControl
-                                type="text"
-                                value={this.state.postcode}
-                                onChange={this.handleChangePostcode}
-                                placeholder="Enter the postcode"/>
-                            <FormControl.Feedback/>
-                            <HelpBlock>{this.state.postcodeMsg}</HelpBlock>
-                        </FormGroup>
-                        <FormGroup
-                            controlId="suburb"
-                            validationState={this.getValidationSuburb()}>
-                            <ControlLabel>Suburb</ControlLabel>
-                            <FormControl
-                                type="text"
-                                value={this.state.suburb}
-                                onChange={this.handleChangeSuburb}
-                                placeholder="Enter the suburb"/>
-                            <FormControl.Feedback/>
-                            <HelpBlock>{this.state.suburbMsg}</HelpBlock>
-                        </FormGroup>
-                        <FormGroup
-                            controlId="state"
-                            validationState={this.getValidationState()}>
-                            <ControlLabel>State</ControlLabel>
-                            <FormControl
-                                type="text"
-                                value={this.state.state}
-                                onChange={this.handleChangeState}
-                                placeholder="Enter the state"/>
-                            <FormControl.Feedback/>
-                            <HelpBlock>{this.state.stateMsg}</HelpBlock>
-                        </FormGroup>
-                        <Button
-                            bsStyle="primary"
-                            onClick={this.handleValidate}>Validate</Button>
-                    </form>
+            <div>
+                <div className="app">
+                    <header className="header">
+                        <img src={logo} className="logo" alt="logo"/>
+                    </header>
+                    <div className="form-container">
+                        <h1>Address validator</h1>
+                        <p>Please complete the form and click the button to validate the input.</p>
+                        <form className="form">
+                            <FormGroup
+                                controlId="postcode"
+                                validationState={this.getValidationPostcode()}>
+                                <ControlLabel>Postcode</ControlLabel>
+                                <FormControl
+                                    type="text"
+                                    value={this.state.postcode}
+                                    onChange={this.handleChangePostcode}
+                                    placeholder="Enter the postcode"/>
+                                <FormControl.Feedback/>
+                                <HelpBlock>{this.state.postcodeMsg}</HelpBlock>
+                            </FormGroup>
+                            <FormGroup
+                                controlId="suburb"
+                                validationState={this.getValidationSuburb()}>
+                                <ControlLabel>Suburb</ControlLabel>
+                                <FormControl
+                                    type="text"
+                                    value={this.state.suburb}
+                                    onChange={this.handleChangeSuburb}
+                                    placeholder="Enter the suburb"/>
+                                <FormControl.Feedback/>
+                                <HelpBlock>{this.state.suburbMsg}</HelpBlock>
+                            </FormGroup>
+                            <FormGroup
+                                controlId="state"
+                                validationState={this.getValidationState()}>
+                                <ControlLabel>State</ControlLabel>
+                                <FormControl
+                                    type="text"
+                                    value={this.state.state}
+                                    onChange={this.handleChangeState}
+                                    placeholder="Enter the state"/>
+                                <FormControl.Feedback/>
+                                <HelpBlock>{this.state.stateMsg}</HelpBlock>
+                            </FormGroup>
+                            {errorMessages.length ? (
+                                errorMessages.map(em => (
+                                    <FormGroup key={em}
+                                        controlId="postcode"
+                                        validationState="error">
+                                        <HelpBlock>{em}</HelpBlock>
+                                    </FormGroup>
+                                ))
+                            ) : ''}
+                            {successMessage ? (
+                                <FormGroup
+                                    controlId="postcode"
+                                    validationState="success">
+                                    <HelpBlock>{successMessage}</HelpBlock>
+                                </FormGroup>
+                            ) : ''}
+                            <Button
+                                bsStyle="primary"
+                                onClick={this.handleValidate}>Validate</Button>
+                        </form>
+                    </div>
                 </div>
+                {processing ?
+                    (<div className="processing">
+                        <div className="info">Validation in progress...</div>
+                    </div>) : ''}
             </div>
         );
     }
 }
 
-
 //-------------------------------------------------------------------------
-//-------------------- Mapping store to Home's props ----------------------
+//-------------------- Mapping store to App's props ----------------------
 //-------------------------------------------------------------------------
 
 const mapStateToProps = (state, ownProps) => {
 
-    const proj = state.Project;
+    const prj = state.Project;
     return {
-        modalOpen: proj.modalOpen,
-        projects: proj.projects
+        ...ownProps,
+        processing: prj.address.processing,
+        errorMessages: prj.address.errorMessages,
+        errorFields: prj.address.errorFields,
+        successMessage: prj.address.successMessage
     }
 }
 

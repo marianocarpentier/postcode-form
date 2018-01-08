@@ -1,11 +1,9 @@
 import RestApiClient from './RestApiClient';
-import {API_TOKEN} from "../Constants";
 
-const validateAddress = (addressPayload, successCallback, catchCallback) => {
+const validateAddress = (queryString, successCallback, catchCallback) => {
 
     RestApiClient({
-        relativeUrl: `/postcode/search.json?q=Sydney`,
-        payload: addressPayload,
+        relativeUrl: `/prod/postcode-search?${queryString}`,
         successCallback,
         catchCallback
     });

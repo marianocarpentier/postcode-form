@@ -22,3 +22,20 @@
     }
   }
 }
+.processing {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.75);
+  .info {
+    text-transform: uppercase;
+    max-width: 240px;
+    padding-top: 10%;
+    margin: 0 auto;
+    font-size: 1.2em;
+    font-weight: lighter;
+    text-align: center;
+  }
+}
