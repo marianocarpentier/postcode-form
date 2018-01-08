@@ -1,4 +1,4 @@
-import {validateAddress} from 'util/api_calls/ProjectApiCalls'
+import {validateAddress} from '../util/api_calls/ProjectApiCalls'
 
 const validateInput = (parameters, dispatch) => {
 

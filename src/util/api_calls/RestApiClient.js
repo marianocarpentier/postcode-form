@@ -3,7 +3,7 @@ import {
     buildHeaders,
     generateUrl,
     generateRequest,
-} from 'util/helpers/MiddlewareHelpers';
+} from '../helpers/MiddlewareHelpers';
 
 const RestApiClient = ({
                            relativeUrl,

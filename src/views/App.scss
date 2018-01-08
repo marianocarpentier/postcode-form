@@ -9,18 +9,6 @@
       height: 80px;
     }
   }
-  .form-container {
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: left;
-    h1 {
-      padding-top: 25px;
-      font-size: 1.6em;
-    }
-    .form {
-      padding-top: 20px;
-    }
-  }
 }
 .processing {
   position: absolute;
@@ -30,12 +18,13 @@
   right: 0;
   background-color: rgba(255, 255, 255, 0.75);
   .info {
-    text-transform: uppercase;
+    text-transform: capitalize;
     max-width: 240px;
-    padding-top: 10%;
-    margin: 0 auto;
+    padding: 10px;
+    margin: 10% auto 0;
     font-size: 1.2em;
-    font-weight: lighter;
+    font-weight: bold;
     text-align: center;
+    background-color: #fff;
   }
 }
