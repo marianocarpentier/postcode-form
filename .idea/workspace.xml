@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d893b145-bc55-40c0-8526-834f5fef9a3e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/actions/ProjectActions.js" afterPath="$PROJECT_DIR$/src/actions/ProjectActions.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/ProjectReducer.js" afterPath="$PROJECT_DIR$/src/reducers/ProjectReducer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/util/Constants.js" afterPath="$PROJECT_DIR$/src/util/Constants.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/util/api_calls/ProjectApiCalls.js" afterPath="$PROJECT_DIR$/src/util/api_calls/ProjectApiCalls.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/util/helpers/MiddlewareHelpers.js" afterPath="$PROJECT_DIR$/src/util/helpers/MiddlewareHelpers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/App.css" afterPath="$PROJECT_DIR$/src/views/App.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/App.js" afterPath="$PROJECT_DIR$/src/views/App.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/App.scss" afterPath="$PROJECT_DIR$/src/views/App.scss" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,7 +16,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="App.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/App.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
@@ -46,11 +38,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProjectReducer.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ProjectReducer.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/reducers/ProjectReducer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="34" column="22" lean-forward="false" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
+            <state relative-caret-position="493">
+              <caret line="49" column="16" lean-forward="false" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="16" />
               <folding>
                 <element signature="e#0#76#0" expanded="true" />
               </folding>
@@ -132,8 +124,8 @@
       <find>localities.filter</find>
       <find>errorMessage</find>
       <find>errorMessages</find>
-      <find>map</find>
       <find>suburb</find>
+      <find>map</find>
     </findStrings>
     <replaceStrings>
       <replace>Name</replace>
@@ -157,9 +149,9 @@
         <option value="$PROJECT_DIR$/src/views/App.scss" />
         <option value="$PROJECT_DIR$/src/util/api_calls/RestApiClient.js" />
         <option value="$PROJECT_DIR$/src/actions/ProjectActions.js" />
-        <option value="$PROJECT_DIR$/src/reducers/ProjectReducer.js" />
         <option value="$PROJECT_DIR$/src/util/helpers/ValidationHelpers.js" />
         <option value="$PROJECT_DIR$/src/views/App.js" />
+        <option value="$PROJECT_DIR$/src/reducers/ProjectReducer.js" />
       </list>
     </option>
   </component>
@@ -316,12 +308,12 @@
       <updated>1515313285386</updated>
       <workItem from="1515313286649" duration="15503000" />
       <workItem from="1515379984137" duration="2712000" />
-      <workItem from="1515388251231" duration="8939000" />
+      <workItem from="1515388251231" duration="9042000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27154000" />
+    <option name="totallyTimeSpent" value="27257000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1140" extended-state="0" />
@@ -607,21 +599,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/reducers/ProjectReducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" column="22" lean-forward="false" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#76#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/util/Constants.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="36" lean-forward="false" selection-start-line="0" selection-start-column="36" selection-end-line="0" selection-end-column="36" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="20" lean-forward="false" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -633,12 +625,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/App.js">
+    <entry file="file://$PROJECT_DIR$/src/reducers/ProjectReducer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="20" lean-forward="false" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+        <state relative-caret-position="493">
+          <caret line="49" column="16" lean-forward="false" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="16" />
           <folding>
-            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#0#76#0" expanded="true" />
           </folding>
         </state>
       </provider>

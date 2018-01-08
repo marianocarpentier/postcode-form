@@ -46,7 +46,8 @@ export default (state = initialState, action) => {
             }
             let errors = validateAddressFromApi(locs, state.address.suburb,
                 state.address.state, state.address.postcode);
-            let successMessage = !errors.errorMessages.length ? 'The address is valid.' : '';
+            let successMessage = !errors.errorMessages.length ?
+                'The postcode, suburb and state entered are valid.' : '';
             return {
                 ...state,
                 address: {
